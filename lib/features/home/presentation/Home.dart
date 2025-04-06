@@ -1,0 +1,568 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meditech/features/home/presentation/pages/home_screen.dart';
+import 'package:meditech/features/home/presentation/pages/notification_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../core/constants/Global.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/constants/image_strings.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
+
+import '../../service/presentation/pages/service_page.dart';
+import '../../service/presentation/widgets/service_header.dart';
+
+
+
+class DoctorHomeScreen extends StatelessWidget {
+  const DoctorHomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.blueWhite,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(16.0.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildAppBar(context),
+                SizedBox(height: 16.h),
+                _buildDoctorProfileCard(),
+                SizedBox(height: 24.h),
+                ServicePage(),
+
+                SizedBox(height: 24.h),
+                _buildSectionHeader(
+                  title: "العروض الحالية",
+                  onSeeMoreTap: () => _navigateToAllOffers(context),
+                ),
+                SizedBox(height: 16.h),
+                _buildOffersList(),
+                SizedBox(height: 24.h),
+                _buildSectionHeader(
+                  title: "المواعيد القادمة",
+                  onSeeMoreTap: () => _navigateToAllAppointments(context),
+                ),
+                SizedBox(height: 16.h),
+                _buildAppointmentsList(),
+                SizedBox(height: 16.h),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAppBar(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          "${Global.userDate?.fullName ?? 'دكتور'} 👋",
+          style: GoogleFonts.ibmPlexSansArabic(
+            color: const Color(0xFF1D2035),
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const Spacer(),
+        IconButton(
+          onPressed: () => _navigateToNotifications(context),
+          icon: const Icon(Iconsax.notification),
+          color: const Color(0xFF1D2035),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDoctorProfileCard() {
+    return Container(
+      height: 140.h,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+        child: Row(
+          children: [
+            Container(
+              // height: 120.h,
+              width: 110.w,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(AppImages.doctor),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+            ),
+            SizedBox(width: 16.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'د / عبدالرازق محمد',
+                    style: GoogleFonts.ibmPlexSansArabic(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    'استشاري جراحة سمنة وتكميم المعدة',
+                    style: GoogleFonts.ibmPlexSansArabic(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                  SizedBox(height: 16.h),
+                  _buildStatusIndicator(
+                    isAvailable: true,
+                    appointmentsCount: 5,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatusIndicator({
+    required bool isAvailable,
+    required int appointmentsCount,
+  }) {
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+          decoration: BoxDecoration(
+            color: isAvailable ? Colors.green.shade400 : Colors.red.shade400,
+            borderRadius: BorderRadius.circular(16.r),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                isAvailable ? Icons.check_circle : Icons.cancel,
+                color: Colors.white,
+                size: 14.sp,
+              ),
+              SizedBox(width: 4.w),
+              Text(
+                isAvailable ? 'متاح' : 'غير متاح',
+                style: GoogleFonts.ibmPlexSansArabic(
+                  color: Colors.white,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(width: 8.w),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(16.r),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Iconsax.calendar,
+                color: Colors.white,
+                size: 14.sp,
+              ),
+              SizedBox(width: 4.w),
+              Text(
+                '$appointmentsCount مواعيد اليوم',
+                style: GoogleFonts.ibmPlexSansArabic(
+                  color: Colors.white,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionHeader({
+    required String title,
+    required VoidCallback onSeeMoreTap,
+  }) {
+    return Row(
+      children: [
+        Text(
+          title,
+          style: GoogleFonts.ibmPlexSansArabic(
+            color: const Color(0xFF1D2035),
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const Spacer(),
+        InkWell(
+          onTap: onSeeMoreTap,
+          borderRadius: BorderRadius.circular(8.r),
+          child: Padding(
+            padding: EdgeInsets.all(8.0.w),
+            child: Text(
+              "المزيد",
+              style: GoogleFonts.ibmPlexSansArabic(
+                color: AppColors.primary,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Future<List<ServiceModel>> getServicesByDepartment(String departmentId) async {
+  //   final querySnapshot = await FirebaseFirestore.instance
+  //       .collection('services')
+  //       .where('departmentId', isEqualTo: departmentId)
+  //       .get();
+  //
+  //   final serviceList = querySnapshot.docs
+  //       .map((doc) => ServiceModel.fromMap(doc.data()))
+  //       .toList();
+  //
+  //   return serviceList;
+  // }
+
+
+
+  Widget _buildOffersList() {
+    return Container(
+      width: double.infinity,
+      height: 180.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: PageView(
+        children: [
+          _buildOfferCard(
+            title: "خصم 25% على عملية تكميم المعدة",
+            subtitle: "العرض ساري حتى نهاية الشهر",
+            imagePath: AppImages.banner1,
+            backgroundColor: const Color(0xFF4A6572),
+          ),
+          _buildOfferCard(
+            title: "استشارة مجانية للحالات الجديدة",
+            subtitle: "لأول 10 مرضى هذا الأسبوع",
+            imagePath: AppImages.banner1,
+            backgroundColor: const Color(0xFF344955),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOfferCard({
+    required String title,
+    required String subtitle,
+    required String imagePath,
+    required Color backgroundColor,
+  }) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 4.w),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(12.r),
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            backgroundColor.withOpacity(0.7),
+            BlendMode.srcOver,
+          ),
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(16.0.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.ibmPlexSansArabic(
+                color: Colors.white,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              subtitle,
+              style: GoogleFonts.ibmPlexSansArabic(
+                color: Colors.white.withOpacity(0.9),
+                fontSize: 14.sp,
+              ),
+            ),
+            SizedBox(height: 16.h),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: AppColors.primary,
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+              ),
+              child: Text(
+                "استفد من العرض",
+                style: GoogleFonts.ibmPlexSansArabic(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAppointmentsList() {
+    // Sample appointment data - in real app, fetch from a service
+    final List<AppointmentModel> appointments = [
+      AppointmentModel(
+        id: '1',
+        patientName: 'أحمد محمود',
+        date: DateTime.now().add(const Duration(hours: 2)),
+        type: 'استشارة عامة',
+        isConfirmed: true,
+      ),
+      AppointmentModel(
+        id: '2',
+        patientName: 'سارة خالد',
+        date: DateTime.now().add(const Duration(hours: 4)),
+        type: 'متابعة بعد العملية',
+        isConfirmed: true,
+      ),
+      AppointmentModel(
+        id: '3',
+        patientName: 'محمد علي',
+        date: DateTime.now().add(const Duration(days: 1)),
+        type: 'استشارة سمنة',
+        isConfirmed: false,
+      ),
+    ];
+
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: appointments.length > 3 ? 3 : appointments.length,
+      itemBuilder: (context, index) {
+        final appointment = appointments[index];
+        return _buildAppointmentCard(context, appointment);
+      },
+    );
+  }
+
+  Widget _buildAppointmentCard(BuildContext context, AppointmentModel appointment) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 12.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(16.0.w),
+        child: Row(
+          children: [
+            Container(
+              width: 50.w,
+              height: 50.w,
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  appointment.patientName.substring(0, 1),
+                  style: GoogleFonts.ibmPlexSansArabic(
+                    color: AppColors.primary,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 16.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    appointment.patientName,
+                    style: GoogleFonts.ibmPlexSansArabic(
+                      color: const Color(0xFF1D2035),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    appointment.type,
+                    style: GoogleFonts.ibmPlexSansArabic(
+                      color: Colors.grey.shade700,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Iconsax.calendar,
+                        size: 14.sp,
+                        color: Colors.grey.shade600,
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        _formatDate(appointment.date),
+                        style: GoogleFonts.ibmPlexSansArabic(
+                          color: Colors.grey.shade600,
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      Icon(
+                        Iconsax.clock,
+                        size: 14.sp,
+                        color: Colors.grey.shade600,
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        _formatTime(appointment.date),
+                        style: GoogleFonts.ibmPlexSansArabic(
+                          color: Colors.grey.shade600,
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+              decoration: BoxDecoration(
+                color: appointment.isConfirmed
+                    ? Colors.green.shade100
+                    : Colors.amber.shade100,
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: Text(
+                appointment.isConfirmed ? 'مؤكد' : 'بانتظار التأكيد',
+                style: GoogleFonts.ibmPlexSansArabic(
+                  color: appointment.isConfirmed
+                      ? Colors.green.shade800
+                      : Colors.amber.shade800,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Helper methods
+  String _formatDate(DateTime date) {
+    return "${date.day}/${date.month}/${date.year}";
+  }
+
+  String _formatTime(DateTime date) {
+    return "${date.hour}:${date.minute.toString().padLeft(2, '0')}";
+  }
+
+  // Navigation methods
+  void _navigateToNotifications(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const NotificationScreen()),
+    );
+  }
+
+  // void _navigateToServiceDetails(BuildContext context, ServiceModel service) {
+  //   // Navigator.push(
+  //   //   context,
+  //   //   MaterialPageRoute(
+  //   //     builder: (context) => ServiceDetailsScreen(service: service),
+  //   //   ),
+  //   // );
+  // }
+
+
+
+  void _navigateToAllOffers(BuildContext context) {
+    // Implement navigation to all offers screen
+  }
+
+  void _navigateToAllAppointments(BuildContext context) {
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => const AppointmentScreen()),
+      // );
+    }
+}
+
+// These are sample model classes - in a real app, place these in separate files
+
+class AppointmentModel {
+  final String id;
+  final String patientName;
+  final DateTime date;
+  final String type;
+  final bool isConfirmed;
+
+  AppointmentModel({
+    required this.id,
+    required this.patientName,
+    required this.date,
+    required this.type,
+    required this.isConfirmed,
+  });
+}

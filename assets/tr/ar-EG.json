@@ -1,0 +1,91 @@
+{
+  "appName": "مواريث",
+  "theaAppName": "المواريث",
+  "slogan": "فريضة من الله إن الله كان عليما حكيما",
+  "appDescription": "",
+  "appMessage": "رسالة التطبيق",
+
+  "developed_by": "تم تطويره بواسطة",
+  "email": "البريد الإلكتروني",
+  "phone": "الهاتف",
+  "address": "العنوان",
+  "about_us": "معلومات عنا",
+  "contact": "اتصل",
+  "version": "الأصدار",
+
+
+  "get_started": "البدء",
+  "money": "المال",
+  "addAmountRequired": "أضف المبلغ المطلوب",
+  "addAmount": "أضف المبلغ",
+  "secondary": "الفروع",
+  "primary": "ألاصول",
+  "marital": "الزوجية",
+  "secondDegreeRelatives": "الحواشي",
+  "muwalah": "الولاء",
+
+  "be_sure_to_include": " تأكد من أدخال جميع أفراد العائلة",
+  "note": "ملاحظة",
+  "calc": "أحسب",
+  "new_qes": "مسألة جديدة",
+  "about_app": "حول التطبيق",
+  "visit_website": "زيارة الموقع",
+  "copyright": "جميع الحققوق محفوظة- المعتصم بالله البزم",
+
+
+
+  "percentage": "النسبة",
+  "amount": "المبلغ",
+  "group-total": "نصيب",
+  "person-total": "نصيب الفرد",
+
+  "Sons": "الأبناء",
+  "daughters": "البنات",
+  "son_sons": "أبناء الابناء",
+  "daughters_sons": "بنات الابناء",
+  "husband": "الزوج",
+  "wife": "الزوجة",
+
+  "Father": "الأب",
+  "Mother": "الأم",
+  "Grand": "الجد الصحيح",
+  "Grandfather": "الجدة لأب",
+  "Grandmother": "الجدة لأم",
+
+  "Seaplanes-Brothers": "الإخوة الأشقاء",
+  "Seaplanes-Sisters": "الأخوات الشقيقات",
+  "Brothers-Father": "الإخوة الأب",
+  "Sisters-Father": "الأخوات الأب",
+
+
+  "Seaplanes-Mother": "الإخوة والأخوات لأم",
+
+
+  "full-brother-son": "ابن الأخ الشقيق",
+  "father-brother-son": "ابن الأخ لأب",
+  "sibling-uncles": "الأعمام الأشقاء",
+  "Paternal-uncles": "الأعمام لأب",
+  "brotherly-cousin": "ابن العم الشقيق",
+  "Paternal-cousin": "ابن العم لأب",
+  "freedman": "المعتق",
+  "save_data_history": "حفظ البيانات",
+  "save": "حفظ",
+  "data_not_saved": "لم يتم حفظ البيانات",
+  "history": "سجل المسائل",
+  "menu":"القائمة",
+
+    "concept_of_science": "مفهوم العلم وفضله وأهميته",
+    "explanations": "شروح",
+    "main_references": "أهم المراجع",
+    "summaries": "الملخصات",
+    "issues_known_by_name": "المسائل المشتهرة باسم",
+    "contemporary_issues": "المسائل المعاصرة",
+    "glossary_of_inheritance_terms": "معجم مصطلحات علم الميراث",
+    "misconceptions_about_inheritance_science": "شبهات حول علم الميراث",
+    "digital_library": "مكتبة رقمية",
+    "programs_for_download": "برامج للتحميل",
+    "friendly_sites": "مواقع صديقة",
+
+  "cal_of_inheritance": "حساب المواريث"
+
+}

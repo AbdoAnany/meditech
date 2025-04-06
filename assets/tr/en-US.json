@@ -1,0 +1,91 @@
+{
+  "appName": "Mawarith",
+
+  "theaAppName": "Al Mawarith",
+
+  "slogan": "An obligation from Allah, indeed Allah is All-Knowing, All-Wise",
+  "appDescription": "Mawarith is an app that helps you calculate your inheritance.",
+
+  "appMessage": "App Message",
+
+
+  "developed_by": "Developed by",
+  "version": "Version",
+
+  "email": "Email",
+  "phone": "Phone",
+  "address": "Address",
+  "about_us": "About Us",
+  "contact": "Contact",
+  "get_started": "Get Started",
+  "money": "Money",
+  "addAmountRequired": "Add the required amount",
+  "addAmount": "Add Amount",
+  "secondary": "Secondary",
+  "primary": "Primary",
+  "marital": "Marital",
+  "secondDegreeRelatives": "Second-degree relatives",
+  "muwalah": "Loyalty",
+
+  "be_sure_to_include": "Make sure to include all family members",
+  "note": "Note",
+  "calc": "Calculate",
+  "new_qes": "New Question",
+  "about_app": "About the App",
+  "visit_website": "Visit Website",
+  "copyright": "All rights reserved - Al-Mu'tasim Billah Al-Bazzam",
+
+  "percentage": "Percentage",
+  "amount": "Amount",
+  "group-total": "Share",
+  "person-total": "Individual Share",
+
+  "Sons": "Sons",
+  "daughters": "Daughters",
+  "son_sons": "Sons of Sons",
+  "daughters_sons": "Daughters of Sons",
+  "husband": "Husband",
+  "wife": "Wife",
+
+  "Father": "Father",
+  "Mother": "Mother",
+  "Grand": "True Grandfather",
+  "Grandfather": "Father's Grandmother",
+  "Grandmother": "Mother's Grandmother",
+
+  "Seaplanes-Brothers": "Full Brothers",
+  "Seaplanes-Sisters": "Full Sisters",
+  "Brothers-Father": "Brothers from Father",
+  "Sisters-Father": "Sisters from Father",
+  "Brothers-Mother": "Brothers from Mother",
+  "Sisters-Mother": "Sisters from Mother",
+
+  "Seaplanes-Mother": "Half-Siblings from Mother",
+
+  "full-brother-son": "Son of Full Brother",
+  "father-brother-son": "Son of Brother from Father",
+  "sibling-uncles": "Full Uncles",
+  "Paternal-uncles": "Uncles from Father",
+  "brotherly-cousin": "Son of Full Uncle",
+  "Paternal-cousin": "Son of Uncle from Father",
+  "freedman": "Freedman",
+  "save_data_history": "Save Data History",
+  "save": "Save",
+  "data_not_saved": "Data Not Saved",
+
+  "history": "History",
+  "menu": "Menu",
+    "concept_of_science": "The Concept of Science, Its Virtues, and Importance",
+    "explanations": "Explanations",
+    "main_references": "Main References",
+    "summaries": "Summaries",
+    "issues_known_by_name": "Issues Known by Name",
+    "contemporary_issues": "Contemporary Issues",
+    "glossary_of_inheritance_terms": "Glossary of Inheritance Science Terms",
+    "misconceptions_about_inheritance_science": "Misconceptions about Inheritance Science",
+    "digital_library": "Digital Library",
+    "programs_for_download": "Programs for Download",
+    "friendly_sites": "Friendly Sites",
+  "cal_of_inheritance": "Inheritance Calculation"
+
+}

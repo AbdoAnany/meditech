@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "816037582062",
+    "project_id": "a-healthcare-management-system",
+    "storage_bucket": "a-healthcare-management-system.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816037582062:android:5f780572144245f2168fff",
+        "android_client_info": {
+          "package_name": "com.abdoanany.drabdelrazekmohamed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816037582062-j8l9s5v2v8b33bt4725auurs8b4gtijv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn4qMIxFYFDN7VqmZihfCAQkr6xl0AeO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816037582062-j8l9s5v2v8b33bt4725auurs8b4gtijv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "816037582062-dar2u9fauslupurt267f56lu92hdps16.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.abdoanany.drabdelrazekmohamed"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816037582062:android:18f7fcb1504abaa0168fff",
+        "android_client_info": {
+          "package_name": "com.abdoanany.meditech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816037582062-j8l9s5v2v8b33bt4725auurs8b4gtijv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn4qMIxFYFDN7VqmZihfCAQkr6xl0AeO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816037582062-j8l9s5v2v8b33bt4725auurs8b4gtijv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "816037582062-dar2u9fauslupurt267f56lu92hdps16.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.abdoanany.drabdelrazekmohamed"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
