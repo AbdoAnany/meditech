@@ -12,9 +12,7 @@ extension UserRoleExtension on UserRole {
         return 'doctor';
       case UserRole.admin:
         return 'admin';
-      default:
-        return 'patient';
-    }
+      }
   }
 
   static UserRole fromString(String? role) {
