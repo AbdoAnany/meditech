@@ -5,18 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
 import 'core/notification_service/notifcation_service.dart';
 import 'core/style/app_typography.dart';
 import 'core/widget/widget.dart';
 import 'di.dart';
-import 'features/login/presentation/manager/login_cubit.dart';
-import 'package:flutter/material.dart';
+import 'features/1-login/presentation/manager/login_cubit.dart';
 
 
-import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
 

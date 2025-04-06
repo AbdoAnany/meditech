@@ -1,6 +1,6 @@
 import 'package:get_storage/get_storage.dart';
 
-import '../../features/login/data/models/user_model.dart';
+import '../../features/1-login/data/models/user_model.dart';
 import '../constants/Global.dart';
 import '../constants/StringKeys.dart';
 

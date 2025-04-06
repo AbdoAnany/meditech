@@ -6,7 +6,7 @@ import 'package:meditech/core/helpers/helper_functions.dart';
 import 'package:meditech/core/style/app_color.dart';
 import 'package:meditech/features/appointment/data/models/appointment.dart';
 import 'package:meditech/features/appointment/data/repositories/appointment_repository.dart';
-import 'package:meditech/features/login/presentation/widgets/custom_text_field.dart';
+import 'package:meditech/features/1-login/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

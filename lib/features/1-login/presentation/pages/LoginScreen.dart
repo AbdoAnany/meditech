@@ -1,5 +1,4 @@
 import 'package:meditech/core/constants/image_strings.dart';
-import 'package:meditech/core/style/app_color.dart';
 import 'package:meditech/core/widget/AppLogoName.dart';
 import 'package:meditech/core/widget/MainButton.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../home/presentation/pages/home_screen.dart';

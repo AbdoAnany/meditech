@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meditech/features/appointment/data/models/appointment.dart';
 import 'package:meditech/features/appointment/data/repositories/appointment_repository.dart';
-import 'package:meta/meta.dart';
 
 part 'appointment_state.dart';
 

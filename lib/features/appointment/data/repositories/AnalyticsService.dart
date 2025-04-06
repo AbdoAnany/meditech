@@ -3,11 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import '../../../../core/Enums.dart';
-import '../models/healthcare.dart';
 
 // ... (previous code remains the same until AnalyticsService)
 

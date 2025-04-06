@@ -6,12 +6,6 @@ import '../../../../core/Enums.dart';
 import '../../../../core/constants/Global.dart';
 import '../models/appointment.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meditech/features/appointment/data/models/progress_note.dart';
-import 'package:meditech/features/appointment/data/models/weight_loss_plan.dart';
-import '../../../../core/Enums.dart';
-import '../../../../core/constants/Global.dart';
-import '../models/appointment.dart';
 
 class AppointmentRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

@@ -8,7 +8,7 @@ import '../../../core/constants/image_strings.dart';
 import '../../../core/helpers/helper_functions.dart';
 import '../../../core/theme/style.dart';
 import '../../../core/widget/MainButton.dart';
-import '../../login/presentation/pages/LoginScreen.dart';
+import '../../1-login/presentation/pages/LoginScreen.dart';
 
 class IntroductoryScreen extends StatefulWidget {
   const IntroductoryScreen({super.key});

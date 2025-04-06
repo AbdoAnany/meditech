@@ -1,23 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meditech/features/home/presentation/pages/home_screen.dart';
-import 'package:meditech/features/home/presentation/pages/notification_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-
-import '../../../core/constants/Global.dart';
-import '../../../core/constants/colors.dart';
-import '../../../core/constants/image_strings.dart';
-
+import 'package:meditech/features/notification/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../service/presentation/pages/service_page.dart';
-import '../../service/presentation/widgets/service_header.dart';
+import '../../../../core/constants/Global.dart';
+import '../../../../core/constants/colors.dart';
+import '../../../../core/constants/image_strings.dart';
+
+
+import '../../../service/presentation/pages/service_page.dart';
 
 
 
@@ -54,7 +46,7 @@ class DoctorHomeScreen extends StatelessWidget {
                   onSeeMoreTap: () => _navigateToAllAppointments(context),
                 ),
                 SizedBox(height: 16.h),
-                _buildAppointmentsList(),
+                // _buildAppointmentsList(),
                 SizedBox(height: 16.h),
               ],
             ),
@@ -70,7 +62,6 @@ class DoctorHomeScreen extends StatelessWidget {
         Text(
           "${Global.userDate?.fullName ?? 'دكتور'} 👋",
           style: GoogleFonts.ibmPlexSansArabic(
-            color: const Color(0xFF1D2035),
             fontSize: 18.sp,
             fontWeight: FontWeight.w700,
           ),
@@ -79,7 +70,7 @@ class DoctorHomeScreen extends StatelessWidget {
         IconButton(
           onPressed: () => _navigateToNotifications(context),
           icon: const Icon(Iconsax.notification),
-          color: const Color(0xFF1D2035),
+          // color: const Color(0xFF1D2035),
         ),
       ],
     );
@@ -248,19 +239,6 @@ class DoctorHomeScreen extends StatelessWidget {
     );
   }
 
-  // Future<List<ServiceModel>> getServicesByDepartment(String departmentId) async {
-  //   final querySnapshot = await FirebaseFirestore.instance
-  //       .collection('services')
-  //       .where('departmentId', isEqualTo: departmentId)
-  //       .get();
-  //
-  //   final serviceList = querySnapshot.docs
-  //       .map((doc) => ServiceModel.fromMap(doc.data()))
-  //       .toList();
-  //
-  //   return serviceList;
-  // }
-
 
 
   Widget _buildOffersList() {
@@ -355,159 +333,7 @@ class DoctorHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAppointmentsList() {
-    // Sample appointment data - in real app, fetch from a service
-    final List<AppointmentModel> appointments = [
-      AppointmentModel(
-        id: '1',
-        patientName: 'أحمد محمود',
-        date: DateTime.now().add(const Duration(hours: 2)),
-        type: 'استشارة عامة',
-        isConfirmed: true,
-      ),
-      AppointmentModel(
-        id: '2',
-        patientName: 'سارة خالد',
-        date: DateTime.now().add(const Duration(hours: 4)),
-        type: 'متابعة بعد العملية',
-        isConfirmed: true,
-      ),
-      AppointmentModel(
-        id: '3',
-        patientName: 'محمد علي',
-        date: DateTime.now().add(const Duration(days: 1)),
-        type: 'استشارة سمنة',
-        isConfirmed: false,
-      ),
-    ];
 
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: appointments.length > 3 ? 3 : appointments.length,
-      itemBuilder: (context, index) {
-        final appointment = appointments[index];
-        return _buildAppointmentCard(context, appointment);
-      },
-    );
-  }
-
-  Widget _buildAppointmentCard(BuildContext context, AppointmentModel appointment) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 12.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(16.0.w),
-        child: Row(
-          children: [
-            Container(
-              width: 50.w,
-              height: 50.w,
-              decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Text(
-                  appointment.patientName.substring(0, 1),
-                  style: GoogleFonts.ibmPlexSansArabic(
-                    color: AppColors.primary,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(width: 16.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    appointment.patientName,
-                    style: GoogleFonts.ibmPlexSansArabic(
-                      color: const Color(0xFF1D2035),
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    appointment.type,
-                    style: GoogleFonts.ibmPlexSansArabic(
-                      color: Colors.grey.shade700,
-                      fontSize: 12.sp,
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  Row(
-                    children: [
-                      Icon(
-                        Iconsax.calendar,
-                        size: 14.sp,
-                        color: Colors.grey.shade600,
-                      ),
-                      SizedBox(width: 4.w),
-                      Text(
-                        _formatDate(appointment.date),
-                        style: GoogleFonts.ibmPlexSansArabic(
-                          color: Colors.grey.shade600,
-                          fontSize: 12.sp,
-                        ),
-                      ),
-                      SizedBox(width: 12.w),
-                      Icon(
-                        Iconsax.clock,
-                        size: 14.sp,
-                        color: Colors.grey.shade600,
-                      ),
-                      SizedBox(width: 4.w),
-                      Text(
-                        _formatTime(appointment.date),
-                        style: GoogleFonts.ibmPlexSansArabic(
-                          color: Colors.grey.shade600,
-                          fontSize: 12.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-              decoration: BoxDecoration(
-                color: appointment.isConfirmed
-                    ? Colors.green.shade100
-                    : Colors.amber.shade100,
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: Text(
-                appointment.isConfirmed ? 'مؤكد' : 'بانتظار التأكيد',
-                style: GoogleFonts.ibmPlexSansArabic(
-                  color: appointment.isConfirmed
-                      ? Colors.green.shade800
-                      : Colors.amber.shade800,
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   // Helper methods
   String _formatDate(DateTime date) {
@@ -551,18 +377,18 @@ class DoctorHomeScreen extends StatelessWidget {
 
 // These are sample model classes - in a real app, place these in separate files
 
-class AppointmentModel {
-  final String id;
-  final String patientName;
-  final DateTime date;
-  final String type;
-  final bool isConfirmed;
+// class AppointmentModel {
+//   final String id;
+//   final String patientName;
+//   final DateTime date;
+//   final String type;
+//   final bool isConfirmed;
 
-  AppointmentModel({
-    required this.id,
-    required this.patientName,
-    required this.date,
-    required this.type,
-    required this.isConfirmed,
-  });
-}
+//   AppointmentModel({
+//     required this.id,
+//     required this.patientName,
+//     required this.date,
+//     required this.type,
+//     required this.isConfirmed,
+//   });
+// }

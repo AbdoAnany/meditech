@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,8 +6,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/constants/Global.dart';
-import '../../../../core/constants/StringKeys.dart';
 import '../../../../core/local_storage/storage_utility.dart';
 import '../../data/models/user_model.dart';
 

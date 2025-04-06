@@ -1,4 +1,3 @@
-import 'package:meditech/core/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

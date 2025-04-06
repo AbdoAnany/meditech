@@ -1,28 +1,19 @@
-import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meditech/features/appointment/presentation/pages/appoinment_screen.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/Enums.dart';
 import '../../../../core/constants/Global.dart';
-import '../../../../core/constants/StringKeys.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
-import '../../../../core/local_storage/storage_utility.dart';
-import '../../../appointment/presentation/widgets/ScheduleTab.dart';
-import '../../../login/data/models/user_model.dart';
 import '../../../profile/presentation/pages/ProfileScreen.dart';
-import '../Home.dart';
-import 'notification_screen.dart';
+import 'DoctorHomeScreen.dart';
+import '../../../notification/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -314,15 +305,6 @@ class ProgramsScreen extends StatelessWidget {
     );
   }
 }
-// import 'package:flutter/material.dart';
-
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-// import 'package:flutter_ui_kit/layout/back_layout.dart';
-
-// /// NOTE: Do not copy [StepperPage] widget
-// /// Copy the [StepperWidget] widget
 
 class WeightLossPlanScreen extends StatefulWidget {
   static const String route = "/WeightLossPlanScreen";

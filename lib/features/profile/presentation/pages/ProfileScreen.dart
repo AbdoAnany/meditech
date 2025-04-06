@@ -1,14 +1,11 @@
-import 'dart:convert';
 
 import 'package:meditech/core/helpers/helper_functions.dart';
 import 'package:meditech/core/local_storage/storage_utility.dart';
-import 'package:meditech/features/login/data/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/Enums.dart';
 import '../../../../core/constants/Global.dart';

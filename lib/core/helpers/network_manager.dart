@@ -58,5 +58,5 @@ Future<void> _updateConnectionStatus(ConnectivityResult results) async {
 }
 
 class TLoaders {
-  static void warningSnackBar({required String title}) =>ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(title)));
+  static void warningSnackBar({required String title}) =>ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(content: Text(title)));
 }

@@ -34,7 +34,7 @@ class TDeviceUtils {
   }
 
   static double getScreenHeight() {
-    return MediaQuery.of(Get.context!).size.height;
+    return MediaQuery.of(Get.context).size.height;
   }
 
   static double getScreenWidth(BuildContext context) {
@@ -42,11 +42,11 @@ class TDeviceUtils {
   }
 
   static double getPixelRatio() {
-    return MediaQuery.of(Get.context!).devicePixelRatio;
+    return MediaQuery.of(Get.context).devicePixelRatio;
   }
 
   static double getStatusBarHeight() {
-    return MediaQuery.of(Get.context!).padding.top;
+    return MediaQuery.of(Get.context).padding.top;
   }
 
   static double getBottomNavigationBarHeight() {
@@ -58,12 +58,12 @@ class TDeviceUtils {
   }
 
   static double getKeyboardHeight() {
-    final viewInsets = MediaQuery.of(Get.context!).viewInsets;
+    final viewInsets = MediaQuery.of(Get.context).viewInsets;
     return viewInsets.bottom;
   }
 
   static Future<bool> isKeyboardVisible() async {
-    final viewInsets = View.of(Get.context!).viewInsets;
+    final viewInsets = View.of(Get.context).viewInsets;
     return viewInsets.bottom > 0;
   }
 

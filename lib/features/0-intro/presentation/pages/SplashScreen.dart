@@ -1,12 +1,11 @@
 import 'package:meditech/core/constants/StringKeys.dart';
 import 'package:meditech/core/local_storage/storage_utility.dart';
 import 'package:meditech/features/0-intro/presentation/pages/OnboardingView.dart';
-import 'package:meditech/features/login/presentation/pages/LoginScreen.dart';
+import 'package:meditech/features/1-login/presentation/pages/LoginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../app.dart';
 import '../../../../core/Enums.dart';
@@ -16,7 +15,6 @@ import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
 import '../../../../core/helpers/helper_functions.dart';
 import '../../../home/presentation/pages/home_screen.dart';
-import '../../../login/data/models/user_model.dart';
 // import '../../../home/presentation/pages/Home.dart';
 // import '../../../../auth/helper/AppRoutes.dart';
 

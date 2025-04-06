@@ -4,7 +4,7 @@
 class AppImages {
   static const String logo = 'assets/images/logo.png';
   static const String gastric = 'assets/images/GASTRIC-SLEEVE.png';
-  static const String doctor = 'assets/images/doctor.png';
+  static const String doctor = 'assets/images/doctorV.png';
   static const String bg_card = 'assets/images/bg_card.png';
 
   static const String onboarding1 = 'assets/images/icon_1.svg';

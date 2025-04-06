@@ -1,25 +1,19 @@
 // auth_cubit.dart
 import 'dart:math';
 
-import 'package:meditech/features/login/presentation/pages/LoginScreen.dart';
+import 'package:meditech/features/1-login/presentation/pages/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meditech/core/constants/image_strings.dart';
-import 'package:meditech/core/style/app_color.dart';
 import 'package:meditech/core/widget/AppLogoName.dart';
 import 'package:meditech/core/widget/MainButton.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/Enums.dart';
 import '../../../../core/constants/colors.dart';
-import '../../../appointment/presentation/pages/appoinment_screen.dart';
-import '../../../home/presentation/pages/home_screen.dart';
 import '../../data/models/user_model.dart';
 import '../manager/login_cubit.dart';
 import '../widgets/custom_text_field.dart';

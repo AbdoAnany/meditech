@@ -8,7 +8,7 @@ import '../../../../core/constants/text_strings.dart';
 import '../../../../core/helpers/helper_functions.dart';
 import '../../../../core/widget/AppLogoName.dart';
 import '../../../../core/widget/MainButton.dart';
-import '../../../login/presentation/pages/LoginScreen.dart';
+import '../../../1-login/presentation/pages/LoginScreen.dart';
 import '../widget/GifFadeToImageWidget.dart';
 import '../widget/OnBoardingItems.dart';
 

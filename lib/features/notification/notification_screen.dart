@@ -3,9 +3,9 @@ import 'package:meditech/core/notification_service/NotificationItem.dart';
 import 'package:flutter/material.dart';
 
 // import '../../../../core/notification/notification_bloc.dart';
-import '../../../../core/notification_service/notifcation_service.dart';
-import '../../../../core/style/app_style.dart';
-import '../../../../core/widget/app_bar_header.dart';
+import '../../core/notification_service/notifcation_service.dart';
+import '../../core/style/app_style.dart';
+import '../../core/widget/app_bar_header.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
