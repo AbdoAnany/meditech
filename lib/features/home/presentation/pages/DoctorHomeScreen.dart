@@ -10,6 +10,7 @@ import '../../../../core/constants/image_strings.dart';
 
 
 import '../../../service/presentation/pages/service_page.dart';
+import 'home_screen.dart';
 
 
 
@@ -352,15 +353,6 @@ class DoctorHomeScreen extends StatelessWidget {
     );
   }
 
-  // void _navigateToServiceDetails(BuildContext context, ServiceModel service) {
-  //   // Navigator.push(
-  //   //   context,
-  //   //   MaterialPageRoute(
-  //   //     builder: (context) => ServiceDetailsScreen(service: service),
-  //   //   ),
-  //   // );
-  // }
-
 
 
   void _navigateToAllOffers(BuildContext context) {
@@ -368,27 +360,12 @@ class DoctorHomeScreen extends StatelessWidget {
   }
 
   void _navigateToAllAppointments(BuildContext context) {
+
+    HomeScreen.tabNotifier.value = 1; // 👈 Navigates to 'البرامج'
+
       // Navigator.push(
       //   context,
       //   MaterialPageRoute(builder: (context) => const AppointmentScreen()),
       // );
     }
 }
-
-// These are sample model classes - in a real app, place these in separate files
-
-// class AppointmentModel {
-//   final String id;
-//   final String patientName;
-//   final DateTime date;
-//   final String type;
-//   final bool isConfirmed;
-
-//   AppointmentModel({
-//     required this.id,
-//     required this.patientName,
-//     required this.date,
-//     required this.type,
-//     required this.isConfirmed,
-//   });
-// }

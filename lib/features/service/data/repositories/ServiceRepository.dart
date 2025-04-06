@@ -129,3 +129,41 @@ class ServiceRepository {
     print("✅ Services seeded successfully!");
   }
 }
+  final List<Map<String, String>> surgeries = [
+    {
+      'title': 'عملية الساسي',
+      'description': 'عملية الساسي من العمليات الجراحية التي...',
+      'image':
+          'https://www.meditech.com/images/services/%D8%AA%D9%83%D9%85%D9%8A%D9%85%20%D8%A7%D9%84%D9%85%D8%B9%D8%AF%D8%A9.jpg.webp',
+    },
+    {
+      'title': 'عملية تحويل المسار المصغر',
+      'description': 'عملية تحويل المسار مناسبة للأشخاص...',
+      'image':
+          'https://www.meditech.com/images/services/%D8%B9%D9%85%D9%84%D9%8A%D8%A9%20%D8%AA%D8%AD%D9%88%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B1%20%D8%A7%D9%84%D9%85%D8%B5%D8%BA%D8%B1.png.webp',
+    },
+    {
+      'title': 'عملية تكميم المعدة',
+      'description': 'هي أكبر عمليات السمنة انتشارًا...',
+      'image':
+          'https://www.meditech.com/images/services/%D8%B9%D9%85%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B3%D8%A7%D8%B3%D9%8A.jpg.webp',
+    },
+    {
+      'title': 'عمليات تصحيح',
+      'description': 'عمليات التصحيح تتم في حالة فشل جراحات السمنة...',
+      'image':
+          'https://www.meditech.com/images/services/%D8%B9%D9%85%D9%84%D9%8A%D8%A9-%D8%A7%D9%84%D8%A8%D8%A7%D9%84%D9%88%D9%86-%D9%84%D9%84%D9%85%D8%B9%D8%AF%D8%A9.jpg.webp',
+    },
+    {
+      'title': 'الكبسولة الذكية',
+      'description': 'الكبسولة الذكية الحل الأمثل بدون جراحة...',
+      'image':
+          'https://www.meditech.com/images/services/%D8%A7%D9%84%D9%83%D8%A8%D8%B3%D9%88%D9%84%D8%A9%20%D8%A7%D9%84%D8%B0%D9%83%D9%8A%D8%A9.jpg.webp',
+    },
+    {
+      'title': 'بالون المعدة وأنواعه',
+      'description': 'بالون المعدة مناسب للأشخاص...',
+      'image':
+          'https://www.meditech.com/images/services/%D8%AA%D8%B5%D8%AD%D9%8A%D8%AD.png.webp',
+    },
+  ];
