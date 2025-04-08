@@ -68,7 +68,7 @@ class NotificationService {
     );
 
     // Initialize local notifications
-    const initializationSettingsAndroid = AndroidInitializationSettings('launcher_icon');
+    const initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
     const initializationSettingsIOS = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,

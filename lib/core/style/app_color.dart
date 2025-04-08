@@ -12,6 +12,8 @@ class AppColor {
   // Secondary Colors
   static const Color white = Color(0xFFFFFFFF); // White
   static const Color black = Color(0xFF000000); // True black
+  static const Color dark = Color(0xFF1F222A); // True black
+  static const Color grayDark = Color(0xFF35383F); // True black
 
   // Alert Colors
   static const Color red = Color(0xFFFF3B30); // Red
