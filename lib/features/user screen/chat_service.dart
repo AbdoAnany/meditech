@@ -51,4 +51,14 @@ class Message {
       "timestamp": FieldValue.serverTimestamp(),
     };
   }
+  factory Message. fromMap(Map<String, dynamic> map) {
+    return Message(
+      id: map['id'],
+      senderId: map['senderId'],
+      receiverId: map['receiverId'],
+      text: map['text'],
+      timestamp: map['timestamp'].toDate(),
+    );
+  }
+
 }

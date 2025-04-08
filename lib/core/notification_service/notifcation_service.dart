@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:convert';
 
@@ -17,7 +16,6 @@ class NotificationService {
   NotificationService._();
 
   // Stream controllers
-  // Stream controllers
   final _notificationController = BehaviorSubject<List<NotificationItem>>();
   final _messageController = BehaviorSubject<Map<String, dynamic>>();
 
@@ -34,10 +32,10 @@ class NotificationService {
   // Constants
   static const String _notificationKey = 'notifications';
   static const String _topicsKey = 'subscribed_topics';
-  final String _serverUrl = 'https://abdoanany.pythonanywhere.com/pushFCM';
+  static const String _serverUrl = 'https://abdoanany.pythonanywhere.com/pushFCM';
 
   // Channel configuration
-  final _channel = const AndroidNotificationChannel(
+  static const _channel = AndroidNotificationChannel(
     'high_importance_channel',
     'High Importance Notifications',
     description: 'This channel is used for important notifications.',
@@ -59,12 +57,10 @@ class NotificationService {
 
     // Configure message handlers
     _setupMessageHandlers();
-
- //   FirebaseMessaging.instance.unsubscribeFromTopic('doctors_topic');
   }
 
   Future<void> _setupNotifications() async {
-    // Request permissions
+    // Request permissions for iOS and Android
     await _messaging.requestPermission(
       alert: true,
       badge: true,
@@ -72,33 +68,28 @@ class NotificationService {
     );
 
     // Initialize local notifications
-    const   initializationSettingsAndroid = AndroidInitializationSettings('mipmap/ic_launcher');
-    var initializationSettingsIOS = DarwinInitializationSettings(
+    const initializationSettingsAndroid = AndroidInitializationSettings('launcher_icon');
+    const initializationSettingsIOS = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
-
-      // onDidReceiveLocalNotification: _onDidReceiveLocalNotification,
     );
 
-    var initializationSettings = InitializationSettings(
+    const initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
-
-
     );
 
     await _localNotifications.initialize(
       initializationSettings,
-
       onDidReceiveNotificationResponse: _onNotificationResponse,
       onDidReceiveBackgroundNotificationResponse: _onBackgroundNotificationResponse,
     );
 
-    // Create notification channel
-    await _localNotifications
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(_channel);
+    // Create notification channel for Android
+    final androidPlugin = _localNotifications
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+    await androidPlugin?.createNotificationChannel(_channel);
 
     // Configure foreground notification options
     await _messaging.setForegroundNotificationPresentationOptions(
@@ -160,7 +151,7 @@ class NotificationService {
       timestamp: DateTime.now(),
     );
 
-    final currentNotifications = _notificationController.value;
+    final currentNotifications = _notificationController.valueOrNull ?? [];
     currentNotifications.insert(0, notification);
     await _saveNotifications(currentNotifications);
 
@@ -172,8 +163,8 @@ class NotificationService {
     _messageController.add(message.data);
   }
 
+  @pragma('vm:entry-point')
   static Future<void> _handleBackgroundMessage(RemoteMessage message) async {
-    // Handle background message here
     print('Handling a background message: ${message.messageId}');
   }
 
@@ -202,7 +193,7 @@ class NotificationService {
   }
 
   Future<void> markAsRead(String notificationId) async {
-    final notifications = _notificationController.value;
+    final notifications = _notificationController.valueOrNull ?? [];
     final index = notifications.indexWhere((n) => n.id == notificationId);
 
     if (index != -1) {
@@ -216,13 +207,13 @@ class NotificationService {
   }
 
   Future<void> deleteNotification(String notificationId) async {
-    final notifications = _notificationController.value;
+    final notifications = _notificationController.valueOrNull ?? [];
     notifications.removeWhere((n) => n.id == notificationId);
     await _saveNotifications(notifications);
   }
 
   List<NotificationItem> getUnreadNotifications() {
-    return _notificationController.value.where((n) => !n.isRead).toList();
+    return (_notificationController.valueOrNull ?? []).where((n) => !n.isRead).toList();
   }
 
   Future<void> sendNotification({
@@ -260,17 +251,9 @@ class NotificationService {
     }
   }
 
+  @pragma('vm:entry-point')
   static void _onBackgroundNotificationResponse(NotificationResponse response) {
-    // Handle background notification response if needed
-  }
-
-  static void _onDidReceiveLocalNotification(
-      int id,
-      String? title,
-      String? body,
-      String? payload,
-      ) {
-    // Handle iOS local notification if needed
+    print('Background notification tapped: ${response.payload}');
   }
 
   void dispose() {
