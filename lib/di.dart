@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:uuid/uuid.dart';
 
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +14,7 @@ import 'features/appointment/presentation/manager/appointment_cubit.dart';
 
 
 final get_it = GetIt.instance;
+var uuid = Uuid();
 
 Future<void> initAppModule() async {
   WidgetsFlutterBinding.ensureInitialized();

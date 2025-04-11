@@ -108,7 +108,6 @@ final ServiceModel service;
     );
   }
   IconData getIconFromName(String iconName) {
-    print("Icon name: $iconName");
     switch (iconName) {
       case 'health':
         return Iconsax.health;

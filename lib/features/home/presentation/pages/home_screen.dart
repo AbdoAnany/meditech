@@ -8,12 +8,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:meditech/features/user%20screen/user_screeen.dart';
 
 import '../../../../core/constants/Global.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
 import '../../../profile/presentation/pages/ProfileScreen.dart';
+import '../../../user screen/chat_list.dart';
 import 'DoctorHomeScreen.dart';
 import '../../../notification/notification_screen.dart';
 
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     DoctorHomeScreen(),
     AppointmentsScreen(),
-    UserScreen(),
+    ChatListScreen(),
    
     ProfileScreen(),
   ];
