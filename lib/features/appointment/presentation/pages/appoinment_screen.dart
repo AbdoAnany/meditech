@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import '../../../../core/constants/Global.dart';
+import '../../../../core/constants/colors.dart';
 import '../../../../di.dart';
 
 class AppointmentsScreen extends StatelessWidget {
@@ -21,20 +22,23 @@ class AppointmentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AppointmentCubit>(
-      create: (context) => get_it<AppointmentCubit>()..fetchAdminAppointments(),
+      create: (context) => get_it<AppointmentCubit>()..fetchAppointments(),
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: _buildAppBar(),
+          appBar: _buildAppBar(context),
           body: _buildTabContent(context),
-          floatingActionButton: _buildFloatingActionButton(context),
+          // floatingActionButton: _buildFloatingActionButton(context),
         ),
       ),
     );
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(BuildContext context) {
     return AppBar(
+      actions: [
+        _buildFloatingActionButton(context),
+      ],
       title: const Text(
         "الحجوزات",
         style: TextStyle(
@@ -101,14 +105,27 @@ class AppointmentsScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       itemCount: filteredAppointments.length,
       separatorBuilder: (_, __) => const SizedBox(height: 12),
-      itemBuilder: (_, index) => AppointmentCardHistory(appointment: filteredAppointments[index]),
+      itemBuilder: (_, index) =>
+          Global.userDate?.userType == UserRole.doctor.name ? AppointmentCard(appointment: filteredAppointments[index]) :
+          AppointmentCardHistory(appointment: filteredAppointments[index]),
     );
   }
 
-  Widget? _buildFloatingActionButton(BuildContext context) {
-    return FloatingActionButton.extended(
-      onPressed: () => _showAddAppointmentDialog(context),
-      label: const Text("حجز موعد جديد"),
+  Widget _buildFloatingActionButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: MaterialButton(
+        elevation: 0,
+
+
+        onPressed: () => _showAddAppointmentDialog(context),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+
+
+        // child: const Icon(Icons.add, color: Colors.white),
+        color: AppColors.transparent,
+        child: const Text("حجز موعد ", style: TextStyle(color: AppColors.primary)),
+      ),
     );
   }
 

@@ -313,7 +313,7 @@ class AppointmentCardHistory extends StatelessWidget {
     final bool isAccepted = appointment.status == 'accepted';
     final bool isRejected = appointment.status == 'rejected';
     final stateColor = THelperFunctions.getStatusColor(appointment.status);
-
+print( appointment.toMap());
       return Container(
         // margin: EdgeInsets.only(bottom: 6.h),
         decoration: BoxDecoration(
@@ -341,7 +341,7 @@ class AppointmentCardHistory extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                   ( appointment.patientName??'NA').substring(0, 1),
+                   ( appointment.patientName!.isEmpty?"NA":appointment.patientName  ??'NA ').substring(0, 1),
                     style: GoogleFonts.ibmPlexSansArabic(
                       color: AppColors.primary,
                       fontSize: 18.sp,

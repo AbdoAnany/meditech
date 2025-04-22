@@ -53,7 +53,7 @@ class AppImages {
 
   // -- App HomeScreen
   // -- App HomeScreen
-  static const String person_dr = "assets/images/person_dr.png";
+  static const String person_dr = "assets/images/doctorV.png";
   static const String banner1 = "assets/images/banner.jpg";
   static const String banner2 = "assets/images/banner2.jpg";
   static const String banner3 = "assets/images/Rectangle.png";

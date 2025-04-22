@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:meditech/core/constants/image_strings.dart';
 import 'package:meditech/core/widget/AppLogoName.dart';
 import 'package:meditech/core/widget/MainButton.dart';
@@ -20,8 +21,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _phoneController = TextEditingController(text: '01118836732');
-  final _passwordController = TextEditingController(text: '12345678');
+  final _phoneController = TextEditingController(text: kDebugMode ? '01118836732':"");
+  final _passwordController = TextEditingController(text: kDebugMode ?'12345678':'');
   bool _isRememberMe = false;
   bool _isPasswordVisible = false;
 
@@ -168,24 +169,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 16.h,
                   ),
                   // signInAnonymously
-                  TextButton(
-                      child: Text(
-                        'تسجيل دخول كزائر',
-                        style: GoogleFonts.ibmPlexSansArabic(
-                          color: Color(0xFF1D2035),
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          height: 0.09,
-                        ),
-                      ),
-                      onPressed: () async {
-                        await context.read<AuthCubit>().signInAnonymously();
-                      }
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => RegisterScreen(),
-                      ),
+                  // TextButton(
+                  //     child: Text(
+                  //       'تسجيل دخول كزائر',
+                  //       style: GoogleFonts.ibmPlexSansArabic(
+                  //         color: Color(0xFF1D2035),
+                  //         fontSize: 14.sp,
+                  //         fontWeight: FontWeight.w500,
+                  //         height: 0.09,
+                  //       ),
+                  //     ),
+                  //     onPressed: () async {
+                  //       await context.read<AuthCubit>().signInAnonymously();
+                  //     }
+                  //     // Navigator.push(
+                  //     //   context,
+                  //     //   MaterialPageRoute(
+                  //     //     builder: (context) => RegisterScreen(),
+                  //     ),
                   SizedBox(
                     height: 16.h,
                   ),

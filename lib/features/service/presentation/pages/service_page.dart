@@ -47,10 +47,10 @@ class ServicePage extends StatelessWidget {
     );
   }
   void _navigateToAllServices(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const AllServicesScreen()),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => const AllServicesScreen()),
+    // );
   }
 }
 

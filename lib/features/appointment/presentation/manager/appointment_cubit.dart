@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:meditech/core/constants/Global.dart';
 import 'package:meditech/features/appointment/data/models/appointment.dart';
 import 'package:meditech/features/appointment/data/repositories/appointment_repository.dart';
 
@@ -19,6 +20,10 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     return super.close();
   }
 
+
+  void fetchAppointments() {
+return   Global.userDate?.userType == 'patient' ? fetchUserAppointments(Global.userDate!.phone) : fetchAdminAppointments();
+  }
   void fetchAdminAppointments() {
     _emitLoadingState();
     _adminSubscription = _appointmentRepository.getAdminAppointmentsStream().listen(

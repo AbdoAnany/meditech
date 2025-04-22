@@ -65,17 +65,17 @@ class _ChatScreenState extends State<ChatScreen> {
       create: (context) => ChatCubit(ChatService())..loadMessages(widget.senderId, widget.receiver.id),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: AppColors.primary,
           title: Row(
             children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.white,
-                child: Text(
-                  widget.receiver.fullName[0].toUpperCase(),
-                  style: TextStyle(color: AppColors.primaryColor, fontSize: 20),
-                ),
-              ),
+              // CircleAvatar(
+              //   radius: 20,
+              //   backgroundColor: Colors.white,
+              //   child: Text(
+              //     widget.receiver.fullName[0].toUpperCase(),
+              //     style: TextStyle(color: AppColors.primaryColor, fontSize: 20),
+              //   ),
+              // ),
               SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,10 +92,10 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ],
           ),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
-          ),
+          // leading: IconButton(
+          //   icon: Icon(Icons.arrow_back, color: Colors.white),
+          //   onPressed: () => Navigator.pop(context),
+          // ),
         ),
         body: Column(
           children: [
@@ -295,7 +295,7 @@ print(message.text);
   Widget _buildMessageInput(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       color: Colors.white,
       child: Row(
         children: [
@@ -308,6 +308,7 @@ print(message.text);
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide.none,
                 ),
+
                 filled: true,
                 fillColor: Colors.grey[100],
                 contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -316,9 +317,9 @@ print(message.text);
           ),
           SizedBox(width: 8),
           CircleAvatar(
-            backgroundColor: AppColors.primaryColor,
+            backgroundColor: AppColors.transparent,
             child: IconButton(
-              icon: Icon(Icons.send, ),
+              icon: Icon(Icons.send,color: AppColors.primary, ),
               onPressed: () {
                 if (_inputController.text.trim().isNotEmpty) {
                   context.read<ChatCubit>().sendMessage(

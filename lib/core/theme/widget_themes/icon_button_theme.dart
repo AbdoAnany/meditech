@@ -11,7 +11,8 @@ class TIconButtonTheme {
         borderRadius: BorderRadius.circular(15),
       ),
       elevation: 5,
-      backgroundColor: AppColors.white,
+      foregroundColor: AppColors.primary,
+      // backgroundColor: AppColors.white,
       fixedSize: const Size(55, 55),
     ),
   );

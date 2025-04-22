@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../compment.dart';
 import '../../../../core/Enums.dart';
 import '../../../../core/constants/Global.dart';
 import '../../../../core/constants/StringKeys.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
+import '../../../home/presentation/pages/home_screen.dart';
 import '../widgets/ProfileListItem.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -36,8 +38,10 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 40,
+                      backgroundColor: Colors.white,
+
                       backgroundImage: AssetImage(
-                          AppImages.person_dr), // Replace with your asset image
+                          AppImages.logoName), // Replace with your asset image
                     ),
                     SizedBox(width: 10.w),
                     Spacer(),
@@ -113,26 +117,26 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          ProfileListItem(
-                            icon: Iconsax.user,
-                            text: 'البيانات الشخصية',
-                          ),
-                          ProfileListItem(
-                            icon: Iconsax.health,
-                            text: 'نصائح الطبيب',
-                          ),
-                          ProfileListItem(
-                            icon: Iconsax.note,
-                            text: 'مقالات ',
-                          ),
-                          ProfileListItem(
-                            icon: Iconsax.location,
-                            text: 'الفروع',
-                          ),
-                          ProfileListItem(
-                            icon: Iconsax.notification,
-                            text: 'الإشعارات',
-                          ),
+                          // ProfileListItem(
+                          //   icon: Iconsax.user,
+                          //   text: 'البيانات الشخصية',
+                          // ),
+                          // ProfileListItem(
+                          //   icon: Iconsax.health,
+                          //   text: 'نصائح الطبيب',
+                          // ),
+                          // ProfileListItem(
+                          //   icon: Iconsax.note,
+                          //   text: 'مقالات ',
+                          // ),
+                          // ProfileListItem(
+                          //   icon: Iconsax.location,
+                          //   text: 'الفروع',
+                          // ),
+                          // ProfileListItem(
+                          //   icon: Iconsax.notification,
+                          //   text: 'الإشعارات',
+                          // ),
                           // ProfileListItem(
                           //   icon: Iconsax.language_circle,
                           //   text: 'اللغة',
@@ -153,35 +157,32 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          ProfileListItem(
-                            icon: Iconsax.support,
-                            text: 'الدعم',
-                          ),
                           // ProfileListItem(
-                          //   icon: Iconsax.like_dislike,
-                          //   text: 'تقييم التطبيق',
+                          //   icon: Iconsax.support,
+                          //   text: 'الدعم',
                           // ),
-                          ProfileListItem(
-                            icon: Iconsax.message_question,
-                            text: 'الأسئلة المتكررة',
-                          ),
-                          ProfileListItem(
-                            onTap: () async {
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                            },
-                            icon: Iconsax.info_circle,
-                            text: 'معلومات عنا',
-                          ),
-                          ProfileListItem(
-                            onTap: () async {
-                              _showMyDialog(context);
-
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                            },
-                            icon: Iconsax.profile_delete,
-                            color: Colors.red,
-                            text: 'حذف الحساب',
-                          ),
+                          //
+                          // ProfileListItem(
+                          //   icon: Iconsax.message_question,
+                          //   text: 'الأسئلة المتكررة',
+                          // ),
+                          // ProfileListItem(
+                          //   onTap: () async {
+                          //     // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                          //   },
+                          //   icon: Iconsax.info_circle,
+                          //   text: 'معلومات عنا',
+                          // ),
+                          // ProfileListItem(
+                          //   onTap: () async {
+                          //     _showMyDialog(context);
+                          //
+                          //     // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                          //   },
+                          //   icon: Iconsax.profile_delete,
+                          //   color: Colors.red,
+                          //   text: 'حذف الحساب',
+                          // ),
                           ProfileListItem(
                             onTap: () async {
                               if (Global.userDate?.userType ==
@@ -198,7 +199,7 @@ class ProfileScreen extends StatelessWidget {
                                   .unsubscribeFromTopic('all_topic');
                               await TLocalStorage()
                                   .removeData(StringKeys.userInfo);
-
+                              HomeScreen.tabNotifier.value = 0;
                               await FirebaseAuth.instance.signOut();
 
                               // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));

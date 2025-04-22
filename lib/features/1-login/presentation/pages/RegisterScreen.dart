@@ -70,8 +70,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 textDirection: TextDirection.rtl,
                 children: [
-                  SizedBox(height: MediaQuery.of(context).padding.top),
-                  Center(child: AppLogoName()),
+                 SizedBox(height: MediaQuery.of(context).padding.top),
+                  // Center(child: AppLogoName()),
                   SizedBox(height: 16.h),
                   _buildTextField(
                       "الاسم الكامل",

@@ -35,7 +35,6 @@ class App extends StatelessWidget {
           ScreenUtil.init(context);
           // AppTextTheme.init(context,isDark);
 final isWeb =MediaQuery.of(context).size.width > 800;
-          print(them.themeMode.name);
 
           return ScreenUtilInit(
               designSize: Size(

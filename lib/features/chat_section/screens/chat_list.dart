@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meditech/core/constants/Global.dart';
 import 'package:meditech/features/1-login/data/models/user_model.dart';
 
-import '../../core/constants/colors.dart';
-import '../chat_section/models/chat_message_model.dart';
-import '../chat_section/screens/chat_screen.dart';
+import '../../../core/constants/colors.dart';
+import '../models/chat_message_model.dart';
+import 'chat_screen.dart';
 
 class ChatListScreen extends StatelessWidget {
 
@@ -37,10 +37,11 @@ class ChatListScreen extends StatelessWidget {
             return const Center(child: Text('No users available'));
           }
 
-          final users = userSnapshot.data!.docs
-              .map((doc) => UserModel.fromMap(doc.data() as Map<String, dynamic>))
-              .where((user) => user.id !=  Global.userDate?.id)
-              .toList();
+          final users =_getUsers(userSnapshot.data?.docs);
+
+          if (users.isEmpty) {
+            return const Center(child: Text('No users available'));
+          }
 
           return ListView.builder(
             itemCount: users.length,
@@ -48,13 +49,15 @@ class ChatListScreen extends StatelessWidget {
               final user = users[index];
               final chatId = getChatId( Global.userDate!.id, user.id);
 
-              return StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('messages')
-                    .where('chatId', isEqualTo: chatId)
-                    .where('receiverId', isEqualTo:  Global.userDate?.id)
-                    .where('isRead', isEqualTo: false)
-                    .snapshots(),
+              return FutureBuilder<QuerySnapshot>(
+                future: _getUnreadMessageCount(chatId),
+
+                // FirebaseFirestore.instance
+                //     .collection('messages')
+                //     .where('chatId', isEqualTo: chatId)
+                //     .where('receiverId', isEqualTo:  Global.userDate?.id)
+                //     .where('isRead', isEqualTo: false)
+                //     .snapshots(),
                 builder: (context, messageSnapshot) {
                   final unreadCount = messageSnapshot.data?.docs.length ?? 0;
 
@@ -101,9 +104,18 @@ class ChatListScreen extends StatelessWidget {
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
+
+
                               ],
                             ),
                           ),
+                          Text(user.userType,
+
+                              style:  TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16,
+                              )),
                           if (unreadCount > 0)
                             Container(
                               padding: const EdgeInsets.all(6),
@@ -127,5 +139,30 @@ class ChatListScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  _getUnreadMessageCount(String chatId) {
+    return FirebaseFirestore.instance
+        .collection('messages')
+        .where('chatId', isEqualTo: chatId)
+        .where('receiverId', isEqualTo:  Global.userDate?.id)
+        .where('isRead', isEqualTo: false)
+        .get();
+  }
+
+  _getUsers(List<QueryDocumentSnapshot<Object?>>? docs) {
+    return  Global.userDate?.userType == 'doctor' ?
+
+      docs
+        ?.map((doc) => UserModel.fromMap(doc.data() as Map<String, dynamic>))
+        .where((user) => user.id !=  Global.userDate?.id)
+        .toList():
+        docs
+        ?.map((doc) => UserModel.fromMap(doc.data() as Map<String, dynamic>))
+        .where((user) => user.id !=  Global.userDate?.id && user.userType == 'doctor')
+        .toList();
+
+
+    ;
   }
 }

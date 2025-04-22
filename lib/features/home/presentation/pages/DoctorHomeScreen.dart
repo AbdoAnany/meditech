@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meditech/features/notification/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,9 @@ import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
 
 
+import '../../../../di.dart';
+import '../../../appointment/presentation/manager/appointment_cubit.dart';
+import '../../../appointment/presentation/widgets/appointment_card.dart';
 import '../../../service/presentation/pages/service_page.dart';
 import 'home_screen.dart';
 
@@ -34,20 +38,20 @@ class DoctorHomeScreen extends StatelessWidget {
                 SizedBox(height: 24.h),
                 ServicePage(),
 
-                SizedBox(height: 24.h),
-                _buildSectionHeader(
-                  title: "العروض الحالية",
-                  onSeeMoreTap: () => _navigateToAllOffers(context),
-                ),
-                SizedBox(height: 16.h),
-                _buildOffersList(),
+                // SizedBox(height: 24.h),
+                // _buildSectionHeader(
+                //   title: "العروض الحالية",
+                //   onSeeMoreTap: () => _navigateToAllOffers(context),
+                // ),
+                // SizedBox(height: 16.h),
+                // _buildOffersList(),
                 SizedBox(height: 24.h),
                 _buildSectionHeader(
                   title: "المواعيد القادمة",
                   onSeeMoreTap: () => _navigateToAllAppointments(context),
                 ),
                 SizedBox(height: 16.h),
-                // _buildAppointmentsList(),
+                 _buildAppointmentsList(),
                 SizedBox(height: 16.h),
               ],
             ),
@@ -55,6 +59,32 @@ class DoctorHomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  Widget _buildAppointmentsList() {
+  return  BlocProvider<AppointmentCubit>(
+      create: (context) => get_it<AppointmentCubit>()..fetchAppointments(),
+      child:
+      BlocBuilder<AppointmentCubit, AppointmentState>(
+        builder: (context, state) {
+          if (state is AppointmentLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is AppointmentLoaded) {
+            return  ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+    itemCount: (state.appointments??[]).length,
+    separatorBuilder: (_, __) => const SizedBox(height: 12),
+    itemBuilder: (_, index) => AppointmentCardHistory(appointment: (state.appointments??[])[index]),
+    );
+
+            // _buildAppointmentTabs(state.appointments??[]);
+          } else if (state is AppointmentError) {
+            return Center(child: Text(state.message));
+          }
+          return const Center(child: Text("Unknown state"));
+        },
+      ));
+
   }
 
   Widget _buildAppBar(BuildContext context) {
@@ -101,7 +131,7 @@ class DoctorHomeScreen extends StatelessWidget {
               width: 110.w,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(AppImages.doctor),
+                  image: AssetImage(AppImages.logoName),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(8.r),
@@ -114,7 +144,7 @@ class DoctorHomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'د / عبدالرازق محمد',
+               "أفضل  لخدمتك  للك",
                     style: GoogleFonts.ibmPlexSansArabic(
                       color: Colors.white,
                       fontSize: 16.sp,
@@ -123,7 +153,7 @@ class DoctorHomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    'استشاري جراحة سمنة وتكميم المعدة',
+                    '',
                     style: GoogleFonts.ibmPlexSansArabic(
                       color: Colors.white.withOpacity(0.9),
                       fontSize: 12.sp,
@@ -149,33 +179,33 @@ class DoctorHomeScreen extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
-          decoration: BoxDecoration(
-            color: isAvailable ? Colors.green.shade400 : Colors.red.shade400,
-            borderRadius: BorderRadius.circular(16.r),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                isAvailable ? Icons.check_circle : Icons.cancel,
-                color: Colors.white,
-                size: 14.sp,
-              ),
-              SizedBox(width: 4.w),
-              Text(
-                isAvailable ? 'متاح' : 'غير متاح',
-                style: GoogleFonts.ibmPlexSansArabic(
-                  color: Colors.white,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(width: 8.w),
+        // Container(
+        //   padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+        //   decoration: BoxDecoration(
+        //     color: isAvailable ? Colors.green.shade400 : Colors.red.shade400,
+        //     borderRadius: BorderRadius.circular(16.r),
+        //   ),
+        //   child: Row(
+        //     mainAxisSize: MainAxisSize.min,
+        //     children: [
+        //       Icon(
+        //         isAvailable ? Icons.check_circle : Icons.cancel,
+        //         color: Colors.white,
+        //         size: 14.sp,
+        //       ),
+        //       SizedBox(width: 4.w),
+        //       Text(
+        //         isAvailable ? 'متاح' : 'غير متاح',
+        //         style: GoogleFonts.ibmPlexSansArabic(
+        //           color: Colors.white,
+        //           fontSize: 12.sp,
+        //           fontWeight: FontWeight.w500,
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        // SizedBox(width: 8.w),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
           decoration: BoxDecoration(

@@ -13,7 +13,7 @@ import '../../../../core/constants/Global.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/constants/image_strings.dart';
 import '../../../profile/presentation/pages/ProfileScreen.dart';
-import '../../../user screen/chat_list.dart';
+import '../../../chat_section/screens/chat_list.dart';
 import 'DoctorHomeScreen.dart';
 import '../../../notification/notification_screen.dart';
 
@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.transparent,
@@ -47,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   @override
 void dispose() {
-  HomeScreen.tabNotifier.dispose();
+  // HomeScreen.tabNotifier.dispose();
   super.dispose();
 }
 
